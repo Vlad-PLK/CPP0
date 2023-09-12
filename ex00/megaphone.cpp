@@ -6,11 +6,12 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:18:17 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/11 21:25:37 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:46:27 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 
 int main(int argc, char **argv)
 {
@@ -42,6 +43,7 @@ int main(int argc, char **argv)
             }
             i++;
         }
+        std::cout << "\n";
     }
     return 0;
 }
