@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:14:06 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/18 16:22:23 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/19 07:18:09 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ void    PhoneBook::Add()
 
 void    PhoneBook::Search()
 {
-    std::string separator = "+--------+--------+--------+--------+\n";
+    std::string separator = "+----------+----------+----------+----------+\n";
     std::string h1 = "index";
     std::string h2 = "first name";
     std::string h3 = "last name";
     std::string h4 = "nickname";
     std::string headers = "| " + h1 + " | " + h2 + " | " + h3 + " | " + h4 + " |\n";
-
-    std::cout << separator
-            << "| "
-            << h1 << " | "
-            << h2 << " | "
-            << h3 << " | "
-            << h4 << " |\n"
-            << separator 
-            << separator;
+    std::cout << separator;
+    std::cout << "| " << std::setw(9) << h1 << "| ";
+    h2.resize(8);
+    h2.append(".");
+    std::cout << h2 << "| ";
+    std::cout << h3 << "| ";
+    std::cout << std::setw(9) << h4 << "|\n";
+    std::cout << separator;
+    std::cout << separator;
 }
 
 int main(int argc, char **argv)
