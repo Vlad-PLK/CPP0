@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:14:06 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/19 07:18:09 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:39:03 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,116 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
+void    Contact::showdata()
+{
+    int i;
+
+    i = 0;
+    std::cout << "\n";
+    while (i != 5)
+    {
+        std::cout << ask_data[i] << data[i] << std::endl;
+        i++;
+    }
+    std::cout << "\n";
+}
+
+void    Contact::set_askdata()
+{
+    ask_data[0].append("FIRST NAME : ");
+    ask_data[1].append("LAST NAME : ");
+    ask_data[2].append("NICKNAME : ");
+    ask_data[3].append("PHONE NUMBER : ");
+    ask_data[4].append("DARKEST SECRET : ");
+}
+
 void    Contact::getdata()
 {
+    int i;
+
+    i = 0;
     std::cout << "\n";
     std::cout << "You've decided to store a new contact, please fill the following questions : " << std::endl;
-    std::cout << "FIRST NAME : " << std::endl;
-    std::getline (std::cin, first_name);
-    //std::cout << "LAST NAME : " << std::endl;
-    //std::getline (std::cin, last_name);
-    //std::cout << "NICKNAME : " << std::endl;
-    //std::getline (std::cin, nickname);
-    //std::cout << "PHONE NUMBER : " << std::endl;
-    //std::getline (std::cin, phone_number);
-    //std::cout << "DARKEST SECRET : " << std::endl;
-    //std::getline (std::cin, darkest_secret);
+    while (i != 5)
+    {
+        std::cout << ask_data[i] << std::endl;
+        while (true)
+        {
+            std::getline (std::cin, data[i]);
+            if (data[i].empty())
+                std::cout << "You can't have missing infos !" << std::endl;
+            else
+                break ;
+        }
+        i++;
+    }
 }
 
 void    PhoneBook::Add()
 {
-    c_tab[nb_contacts].getdata();
-    if (nb_contacts < 7)
+    int i;
+
+    if (nb_contacts < 8)
+    {
+        c_tab[nb_contacts].set_askdata();
+        c_tab[nb_contacts].getdata();
         nb_contacts++;
+    }
     else
     {
         std::cout << "You've reached the maximum capacity of the phonebook : " << std::endl;
-        std::cout << "Your last contact will be replaced with this one !" << std::endl;
+        std::cout << "Your last contact will be replaced with the new one !" << std::endl;
+        i = 0;
+        while (i != 4)
+        {
+            //c_tab[7].data[i].erase(0, c_tab[7].data[i].size());
+            c_tab[7].data[i].clear();
+            i++;
+        }
+        c_tab[7].getdata();
     }
     return ;
 }
 
+void    PhoneBook::Contact_info(int i)
+{
+    int j;
+
+    j = 0;
+    std::cout << std::setw(2) << i << "| ";
+    while (j != 2)
+    {
+        if (c_tab[i].data[j].size() > 8)
+        {
+            c_tab[i].data[j].resize(8);
+            c_tab[i].data[j].append(".");
+            std::string info = c_tab[i].data[j];
+            std::cout << info;
+            if (j <= 1)
+                std::cout << "| ";
+        }
+        j++;
+    }
+}
+
 void    PhoneBook::Search()
 {
+
     std::string separator = "+----------+----------+----------+----------+\n";
     std::string h1 = "index";
     std::string h2 = "first name";
     std::string h3 = "last name";
     std::string h4 = "nickname";
-    std::string headers = "| " + h1 + " | " + h2 + " | " + h3 + " | " + h4 + " |\n";
+    int     i;
+    int     j;
+    int     k;
+
+    i = 0;
+    if (nb_contacts == 0)
+    {
+        std::cout << "You don't have any contacts yet !" << std::endl;
+        return ;
+    }
     std::cout << separator;
     std::cout << "| " << std::setw(9) << h1 << "| ";
     h2.resize(8);
@@ -61,7 +134,41 @@ void    PhoneBook::Search()
     std::cout << h3 << "| ";
     std::cout << std::setw(9) << h4 << "|\n";
     std::cout << separator;
-    std::cout << separator;
+    while (i != nb_contacts)
+    {
+        std::cout << "| ";
+        std::cout << std::setw(9) << i + 1 << "| ";
+        j = 0;
+        while (j != 3)
+        {
+            if (c_tab[i].data[j].size() > 8)
+            {
+                c_tab[i].data[j].resize(8);
+                c_tab[i].data[j].append(".");
+            }
+            std::cout << std::setw(9) << c_tab[i].data[j];
+            if (j < 2)
+                std::cout << "| ";
+            j++;
+        }
+        std::cout << "|\n";
+        std::cout << separator;
+        i++;
+    }
+    std::cout << "Please, enter the index of the desired contact : " << std::endl;
+    std::string index;
+    while (true)
+    {
+        std::getline (std::cin, index);
+        if (index.empty() || index.size() > 2 || isdigit(index[0]) == 0
+            || index[0] == '0' || index[0] == '9')
+            std::cout << "Please, enter a valid index !" << std::endl;
+        else
+            break ;
+    }
+    k = atoi(index.c_str());
+    c_tab[k - 1].showdata();
+
 }
 
 int main(int argc, char **argv)
