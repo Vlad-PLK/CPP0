@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:18:03 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/25 18:25:44 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:48:45 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <functional>
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -43,10 +44,15 @@ int Account::getNbWithdrawals(void)
 
 Account::Account(int initial_deposit)
 {
+    time_t  now;
+
+    now = time(0);
+    tm *ltm = localtime(&now);
     _accountIndex = getNbAccounts();
     _amount = initial_deposit + _amount;
     _nbDeposits = 0;
     _nbWithdrawals = 0;
+    std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
     _totalAmount += _amount;
     _nbAccounts++;
@@ -54,11 +60,21 @@ Account::Account(int initial_deposit)
 
 Account::~Account()
 {
-    std::cout << "Destructor called" << std::endl;
+    time_t  now;
+
+    now = time(0);
+    tm *ltm = localtime(&now);
+    std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
+    std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
 void    Account::makeDeposit(int deposit)
 {
+    time_t  now;
+
+    now = time(0);
+    tm *ltm = localtime(&now);
+    std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
     std::cout << "index:" << _accountIndex;
     std::cout << ";p_amount:" << _amount;
     std::cout << ";deposit:" << deposit;
@@ -72,6 +88,11 @@ void    Account::makeDeposit(int deposit)
 
 bool    Account::makeWithdrawal(int withdrawal)
 {
+    time_t  now;
+
+    now = time(0);
+    tm *ltm = localtime(&now);
+    std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
     std::cout << "index:" << _accountIndex;
     std::cout << ";p_amount:" << _amount;
     std::cout << ";withdrawal:";
@@ -95,11 +116,21 @@ bool    Account::makeWithdrawal(int withdrawal)
 
 void Account::displayAccountsInfos()
 {
+    time_t  now;
+
+    now = time(0);
+    tm *ltm = localtime(&now);
+    std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
     std::cout << "accounts:" << getNbAccounts() << ";total:" << getTotalAmount() << ";deposits:" << getNbDeposits() << ";withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
 void Account::displayStatus() const
 {
+    time_t  now;
+
+    now = time(0);
+    tm *ltm = localtime(&now);
+    std::cout << "[" << 1900 + ltm->tm_year << 1 + ltm->tm_mon << ltm->tm_mday << "_" << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";deposits:" << _nbDeposits << ";withdrawals:" << _nbWithdrawals << std::endl;
 }
 
