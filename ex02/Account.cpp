@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:18:03 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/28 16:21:19 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/09/28 16:36:23 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,13 @@ Account::~Account()
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
+int Account::checkAmount(void) const
+{
+    if (_amount <= 0)
+        return (1);
+    else
+        return (0);
+}
 
 void    Account::makeDeposit(int deposit)
 {
@@ -98,7 +105,7 @@ bool    Account::makeWithdrawal(int withdrawal)
     std::cout << "index:" << _accountIndex;
     std::cout << ";p_amount:" << _amount;
     std::cout << ";withdrawal:";
-    if ((_amount - withdrawal) < 0)
+    if ((_amount - withdrawal) < 0 || checkAmount() == 1)
     {
         std::cout << "refused" << std::endl;
         return (false);
