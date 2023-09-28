@@ -19,7 +19,6 @@ ${NAME} : ${OBJ}
 	@printf "\n"
 
 main.o:	main.cpp PhoneBook.hpp Contact.hpp
-
 	${CXX} ${CPP_V} ${FLAGS} -c main.cpp
 
 PhoneBook.o: PhoneBook.hpp
