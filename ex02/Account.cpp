@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:18:03 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/10/09 14:06:00 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:12:20 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void    Account::_displayTimestamp(void)
     now = time(0);
     ltm = localtime(&now);
     strftime(time_buffer, 20, "[%Y%m%d_%H%M%S] ", ltm);
-    result.append(time_buffer);
+    result.assign(time_buffer);
     std::cout << result;
 }
 
