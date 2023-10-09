@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:18:17 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/13 09:44:26 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:38:25 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 class Megaphone
 {
 public:
-    char    *str;
+    std::string loud;
 
     void    ft_toupper(void)
     {
-        int i;
+        unsigned long i;
 
         i = 0;
-        while (str[i] != '\0')
+        while (i != loud.length())
         {
-            str[i] = toupper(str[i]);
-            std::cout << str[i];
+            loud[i] = toupper(loud[i]);
+            std::cout << loud[i];
             i++;
         }
     }
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     {
         while (argv[i])
         {
-            m_phone.str = argv[i];
+            m_phone.loud = argv[i];
             m_phone.ft_toupper();
             i++;
         }

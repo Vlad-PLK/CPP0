@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:18:03 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/28 16:41:36 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:06:00 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "Account.hpp"
 #include <iostream>
 #include <ctime>
+#include <time.h> 
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -25,18 +26,15 @@ int Account::_totalNbWithdrawals = 0;
 void    Account::_displayTimestamp(void)
 {
     time_t  now;
+    tm      *ltm;
+    std::string result;
+    char time_buffer[20];
 
     now = time(0);
-    tm *ltm = localtime(&now);
-    std::cout << "[";
-    std::cout << 1900 + ltm->tm_year;
-    std::cout << 1 + ltm->tm_mon;
-    std::cout << ltm->tm_mday;
-    std::cout << "_";
-    std::cout << ltm->tm_hour; 
-    std::cout << ltm->tm_min;
-    std::cout << ltm->tm_sec;
-    std::cout << "] ";
+    ltm = localtime(&now);
+    strftime(time_buffer, 20, "[%Y%m%d_%H%M%S] ", ltm);
+    result.append(time_buffer);
+    std::cout << result;
 }
 
 int Account::getNbAccounts(void)

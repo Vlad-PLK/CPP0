@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:31:46 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/22 09:35:08 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/09 13:42:57 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void    Contact::getdata()
 
     i = 0;
     std::cout << "\n";
-    std::cout << "You've decided to store a new contact, please fill the following questions : " << std::endl;
+    std::cout << "You've decided to store a new contact, please fill the following infos : " << std::endl;
     while (i != 5)
     {
         std::cout << ask_data[i] << std::endl;
