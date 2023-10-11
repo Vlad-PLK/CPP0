@@ -6,31 +6,26 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:18:17 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/10/09 13:38:25 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:29:17 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Megaphone.hpp"
 #include <iostream>
 #include <string>
 
-class Megaphone
+void    Megaphone::ft_toupper(void)
 {
-public:
-    std::string loud;
+    unsigned long i;
 
-    void    ft_toupper(void)
+    i = 0;
+    while (i != loud.length())
     {
-        unsigned long i;
-
-        i = 0;
-        while (i != loud.length())
-        {
-            loud[i] = toupper(loud[i]);
-            std::cout << loud[i];
-            i++;
-        }
+        loud[i] = toupper(loud[i]);
+        std::cout << loud[i];
+        i++;
     }
-};
+}
 
 int main(int argc, char **argv)
 {

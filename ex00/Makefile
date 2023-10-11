@@ -1,18 +1,22 @@
 NAME = megaphone
 
-SRC = megaphone.cpp
+SRC = Megaphone.cpp
+
+OBJ = ${subst .cpp,.o,$(SRC)}
 
 FLAGS = -Wall -Werror -Wextra
 
 CPP_V = -std=c++98
 
+all : ${NAME}
+
 ${NAME} :
 	@printf "\n"
-	@printf "Creating megaphone :"
+	@printf "Creating megaphone : "
 	c++ ${CPP_V} ${FLAGS} ${SRC} -o ${NAME}
 	@printf "\n"
 
-all : ${NAME}
+Megaphone.o : Megaphone.cpp Megaphone.hpp
 
 clean : 
 	rm -rf ${NAME}
