@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:34:02 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/28 16:54:05 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:35:26 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 
 class Contact
 {
+private:
+    std::string ask_data[5];
 public:
     std::string data[5];
-    std::string ask_data[5];
 
     void    getdata();
     void    set_askdata();
