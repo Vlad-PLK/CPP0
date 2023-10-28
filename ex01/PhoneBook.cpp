@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:31:53 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/09/28 16:52:21 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:59:54 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+
+void    PhoneBook::setLastContact(int new_value)
+{
+    last_contact = new_value;
+}
+
+int PhoneBook::getLastContact(void)
+{
+    return (last_contact);
+}
 
 void    PhoneBook::Add()
 {
@@ -29,14 +39,18 @@ void    PhoneBook::Add()
     else
     {
         std::cout << "You've reached the maximum capacity of the phonebook : " << std::endl;
-        std::cout << "Your last contact will be replaced with the new one !" << std::endl;
+        std::cout << "Your oldest contact will be replaced with the new one !" << std::endl;
         i = 0;
         while (i != 4)
         {
-            c_tab[7].data[i].clear();
+            c_tab[getLastContact()].data[i].clear();
             i++;
         }
-        c_tab[7].getdata();
+        c_tab[getLastContact()].getdata();
+        if (getLastContact() == 7)
+            setLastContact(0);
+        else
+            setLastContact(getLastContact() + 1);
     }
     return ;
 }

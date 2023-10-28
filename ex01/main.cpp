@@ -6,7 +6,7 @@
 /*   By: vpolojie <vpolojie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:14:06 by vpolojie          #+#    #+#             */
-/*   Updated: 2023/10/11 13:40:26 by vpolojie         ###   ########.fr       */
+/*   Updated: 2023/10/28 15:51:18 by vpolojie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(int argc, char **argv)
     (void)argv;
     std::string input;
     PhoneBook   phone;
+    phone.setLastContact(0);
     phone.nb_contacts = 0;
     if (argc != 1)
     {
